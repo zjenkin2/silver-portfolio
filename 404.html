@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 — Zachary Jenkins</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..500&display=swap" rel="stylesheet" />
+  <style>
+    .four04-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-height: 100vh;
+      padding: 0 48px;
+      gap: 24px;
+      position: relative;
+    }
+
+    .four04-number {
+      font-family: var(--font-serif);
+      font-size: clamp(7rem, 18vw, 16rem);
+      font-weight: 600;
+      line-height: 1;
+      letter-spacing: -0.05em;
+      color: var(--ink);
+      opacity: 0.08;
+      user-select: none;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -52%);
+      pointer-events: none;
+    }
+
+    .four04-content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      max-width: 520px;
+      opacity: 0;
+      transform: translateY(24px);
+      animation: fade-up 0.55s cubic-bezier(0.34, 1.3, 0.64, 1) 0.1s forwards;
+    }
+
+    @keyframes fade-up {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .four04-label {
+      font-family: var(--font-sans);
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+
+    .four04-heading {
+      font-family: var(--font-serif);
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+    }
+
+    .four04-heading em {
+      font-style: italic;
+      font-weight: 300;
+      color: var(--ink-mid);
+    }
+
+    .four04-body {
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      font-weight: 300;
+      line-height: 1.75;
+      color: var(--ink-mid);
+      max-width: 380px;
+      text-align: center;
+    }
+
+    .four04-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px;
+      padding: 12px 28px;
+      background: var(--ink);
+      color: var(--cream);
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      border-radius: 999px;
+      transition: background 0.22s ease, transform 0.22s ease;
+    }
+
+    .four04-back:hover {
+      background: var(--accent);
+      transform: scale(1.03);
+    }
+
+    @media (max-width: 600px) {
+      .four04-wrap { padding: 0 24px; }
+      .four04-number { font-size: 30vw; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="grain"></div>
+
+  <header class="header">
+    <div class="header-name">
+      <span class="name-first">Zachary</span>
+      Jenkins
+    </div>
+    <nav class="header-nav">
+      <a href="index.html">Work</a>
+      <a href="404.html">About</a>
+      <a href="404.html">Contact</a>
+    </nav>
+  </header>
+
+  <div class="four04-wrap">
+    <div class="four04-number">404</div>
+
+    <div class="four04-content">
+      <span class="four04-label">Error 404</span>
+      <h1 class="four04-heading">Nothing to see<br><em>here yet.</em></h1>
+      <p class="four04-body">
+        This page is still in the works — check back soon.
+        In the meantime, head back to the portfolio.
+      </p>
+      <a class="four04-back" href="index.html">← Back to work</a>
+    </div>
+  </div>
+
+</body>
+</html>
