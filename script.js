@@ -30,19 +30,13 @@
     setTimeout(animateCardsIn, 80);
   });
 
-  /* ── Placeholder graphic clone helper ────────────────── */
-  function cloneGraphic (sourceCard) {
-    const src = sourceCard.querySelector('.placeholder-graphic');
-    if (!src) return null;
-    return src.cloneNode(true);
-  }
-
   /* ── Open overlay ─────────────────────────────────────── */
   function openOverlay (card) {
-    const title = card.dataset.title || '';
-    const tag   = card.dataset.tag   || '';
-    const desc  = card.dataset.description || '';
-    const link  = card.dataset.link  || '#';
+    const title    = card.dataset.title || '';
+    const tag      = card.dataset.tag   || '';
+    const desc     = card.dataset.description || '';
+    const link     = card.dataset.link  || '#';
+    const imageSrc = card.dataset.image || '';
 
     oTag.textContent   = tag;
     oTitle.textContent = title;
@@ -51,18 +45,25 @@
 
     /* Clear + repopulate image area */
     oImage.innerHTML = '';
-    const graphic = cloneGraphic(card);
-    if (graphic) oImage.appendChild(graphic);
+    if (imageSrc) {
+      /* Use the dedicated overlay image if provided */
+      const img = document.createElement('img');
+      img.src   = imageSrc;
+      img.alt   = title;
+      img.style.cssText = 'width:100%;height:100%;object-fit:cover;border-radius:12px;';
+      oImage.appendChild(img);
+    } else {
+      /* Fall back to cloning the card's placeholder graphic */
+      const graphic = card.querySelector('.placeholder-graphic');
+      if (graphic) oImage.appendChild(graphic.cloneNode(true));
+    }
 
     /* Open */
     overlay.setAttribute('aria-hidden', 'false');
     overlay.classList.add('overlay--open');
     document.body.style.overflow = 'hidden';
 
-    /* Trap focus on close button */
-    requestAnimationFrame(function () {
-      closeBtn.focus();
-    });
+    requestAnimationFrame(function () { closeBtn.focus(); });
   }
 
   /* ── Close overlay ────────────────────────────────────── */
