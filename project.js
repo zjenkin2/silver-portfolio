@@ -77,4 +77,58 @@
     }
   });
 
+  /* ── Image Lightbox ─────────────────────────────────── */
+  var lightbox     = document.createElement('div');
+  lightbox.className = 'img-lightbox';
+  lightbox.setAttribute('aria-modal', 'true');
+  lightbox.setAttribute('role', 'dialog');
+  lightbox.innerHTML =
+    '<button class="img-lightbox-close" aria-label="Close">' +
+      '<svg width="16" height="16" viewBox="0 0 16 16" fill="none">' +
+        '<line x1="1" y1="1" x2="15" y2="15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>' +
+        '<line x1="15" y1="1" x2="1" y2="15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>' +
+      '</svg>' +
+    '</button>' +
+    '<img src="" alt="" />';
+  document.body.appendChild(lightbox);
+
+  var lbImg   = lightbox.querySelector('img');
+  var lbClose = lightbox.querySelector('.img-lightbox-close');
+
+  function openLightbox(src, alt) {
+    lbImg.src = src;
+    lbImg.alt = alt || '';
+    lightbox.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+    lbClose.focus();
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
+
+  /* Attach to all project images (present now or added later) */
+  document.querySelectorAll(
+    '.story-body img, .story-image img, .hero-image-wrap img'
+  ).forEach(function (img) {
+    img.addEventListener('click', function () {
+      openLightbox(img.src, img.alt);
+    });
+  });
+
+  lbClose.addEventListener('click', closeLightbox);
+
+  /* Click backdrop to close */
+  lightbox.addEventListener('click', function (e) {
+    if (e.target === lightbox || e.target === lbImg) closeLightbox();
+  });
+
+  /* Escape to close */
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && lightbox.classList.contains('is-open')) {
+      closeLightbox();
+    }
+  });
+
 })();
